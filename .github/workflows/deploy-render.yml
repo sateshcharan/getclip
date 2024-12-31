@@ -1,0 +1,41 @@
+name: deploy-render
+
+on:
+  workflow_run:
+    workflows: ["test-server"]
+    types:
+      - completed
+
+jobs:
+  deploy:
+    name: Deploy NX Server to Render
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: 'pnpm'
+
+      - name: Install pnpm
+        run: npm install -g pnpm
+
+      - name: Install Dependencies
+        run: pnpm install
+
+      - name: Build the Server
+        run: pnpm nx build server
+
+      - name: Deploy to Render
+        env:
+          RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
+        run: |
+          curl -X POST \
+          -H "Authorization: Bearer $RENDER_API_KEY" \
+          -H "Content-Type: application/json" \
+          -d '{"serviceId": "your-service-id"}' \
+          https://api.render.com/deploy

@@ -1,15 +1,10 @@
-name: Deploy to Vercel
-on:
-  push:
-    branches:
-      # Change this if your primary branch is not main
-      - main
-  pull_request:
+name: deploy-vercel
 
-# Needed for nx-set-shas when run on the main branch
-permissions:
-  actions: read
-  contents: read
+on:
+  workflow_run:
+    workflows: ["test-web"]
+    types:
+      - completed
 
 jobs:
   main:
@@ -29,8 +24,8 @@ jobs:
       - name: Install Dependencies
         run: pnpm install
 
-      - name: Build the App
-        run: pnpm nx run web:build --prod
+      # - name: Build the App
+      #   run: pnpm nx run web:build --prod
 
       - name: Install Vercel CLI
         run: npm install -global vercel
