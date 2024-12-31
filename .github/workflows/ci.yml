@@ -33,7 +33,7 @@ jobs:
         run: pnpm nx run web:build --prod
 
       - name: Install Vercel CLI
-        run: pnpm install -g vercel
+        run: pnpm install vercel
 
       - name: Deploy to Vercel
         env:
