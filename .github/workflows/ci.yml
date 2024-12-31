@@ -19,7 +19,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
           node-version: 20
 
@@ -31,6 +31,9 @@ jobs:
 
       - name: Build the App
         run: pnpm nx run web:build --prod
+
+      - name: Install Vercel CLI
+        run: pnpm install -g vercel
 
       - name: Deploy to Vercel
         env:
