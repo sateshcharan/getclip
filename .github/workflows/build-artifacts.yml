@@ -32,7 +32,7 @@ jobs:
         run: npm install -g vercel
 
       - name: Deploy to Vercel
-        run: vercel --prod --token ${{ secrets.VERCEL_TOKEN }}
+        run: vercel --prod --token ${{ secrets.VERCEL_TOKEN }} --yes
 
       # - name: Build the App
       #   run: pnpm nx run web:build --prod
