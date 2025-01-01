@@ -1,12 +1,4 @@
 {
-    "builds": [
-      {
-        "src": "apps/web/package.json",
-        "use": "@vercel/node",
-        "config": {
-          "outputDirectory": "dist/apps/web"
-        }
-      }
-    ]
-  }
-  
+  "buildCommand": "npx nx build web --configuration=production",
+  "outputDirectory": "dist/apps/web"
+}
