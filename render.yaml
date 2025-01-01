@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: apps-server
+    env: node
+    plan: starter
+    buildCommand: pnpm install && pnpm nx build server
+    startCommand: node dist/apps/server/main.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        sync: false # Add other variables as needed

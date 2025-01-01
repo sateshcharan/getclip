@@ -15,19 +15,20 @@ export function App() {
 
   return (
     <motion.div className="flex flex-col justify-center items-center gap-4 w-screen h-screen px-20">
-          <Input placeholder="Enter url" />
+      <Input placeholder="Enter url" />
 
       {message === '' && (
-        
         <motion.div
           onClick={handleClick}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
         >
-          <Button >Get Data</Button>
+          <Button>Get Data</Button>
         </motion.div>
       )}
-      <h3 className="text-2xl font-semibold">{message}</h3>
+      <h3 className="text-2xl font-semibold">{message.id}</h3>
+      <h3 className="text-2xl font-semibold">{message.name}</h3>
+      <h3 className="text-2xl font-semibold">{message.email}</h3>
     </motion.div>
   );
 }

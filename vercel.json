@@ -1,0 +1,12 @@
+{
+    "builds": [
+      {
+        "src": "apps/web/package.json",
+        "use": "@vercel/node",
+        "config": {
+          "outputDirectory": "dist/apps/web"
+        }
+      }
+    ]
+  }
+  
