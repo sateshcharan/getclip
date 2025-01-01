@@ -28,15 +28,21 @@ jobs:
       - name: Install Dependencies
         run: pnpm install
 
-      - name: Build the App
-        run: pnpm nx run web:build --prod
+      - name: Install Vercel
+        run: npm install -g vercel
 
-      - name: Upload Build Artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: build-artifact
-          path: ./dist/apps
-          retention-days: 1
+      - name: Deploy to Vercel
+        run: vercel --prod
+
+      # - name: Build the App
+      #   run: pnpm nx run web:build --prod
+
+      # - name: Upload Build Artifacts
+      #   uses: actions/upload-artifact@v3
+      #   with:
+      #     name: build-artifact
+      #     path: ./dist/apps
+      #     retention-days: 1
 
 
 
