@@ -33,16 +33,16 @@ jobs:
 
       - name: Deploy to Vercel
         run: vercel --prod --token ${{ secrets.VERCEL_TOKEN }} --yes
+ 
+      - name: Build the app
+        run: |
+             pnpm build  
 
-      # - name: Build the App
-      #   run: pnpm nx run web:build --prod
-
-      # - name: Upload Build Artifacts
-      #   uses: actions/upload-artifact@v3
-      #   with:
-      #     name: build-artifact
-      #     path: ./dist/apps
-      #     retention-days: 1
+      - name: Deploy to Render
+        run: |
+            curl -fsSL https://render.com/deploy/specific_deploy_key  
+        env:
+            RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }} 
 
 
 
