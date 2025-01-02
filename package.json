@@ -5,7 +5,6 @@
   "scripts": {},
   "private": true,
   "dependencies": {
-    "@prisma/client": "^6.1.0",
     "@radix-ui/react-slot": "^1.1.1",
     "axios": "^1.6.0",
     "class-variance-authority": "^0.7.0",
@@ -68,7 +67,6 @@
     "nx": "20.3.0",
     "postcss": "8.4.38",
     "prettier": "^2.6.2",
-    "prisma": "^6.1.0",
     "react-refresh": "^0.10.0",
     "tailwindcss": "^3.4.6",
     "ts-jest": "^29.1.0",
