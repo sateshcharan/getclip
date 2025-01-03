@@ -76,5 +76,21 @@ jobs:
           name: server-build
           path: dist/apps/server
 
+  deploy-vercel:
+    runs-on: ubuntu-20.04
+    needs: [build-test-web]
+
+    steps:
+      - name: Download Build Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: web-build
+
+      - name: Install Vercel CLI
+        run: npm install -global vercel
+
+      - name: Deploy to Vercel
+        run: vercel --prod --token ${{ secrets.VERCEL_TOKEN }} --yes
+
 
 
