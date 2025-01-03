@@ -21,7 +21,7 @@
           "buildTarget": "server:build:production"
         }
       }
-    },
+    }, 
     "test": {
       "options": {
         "passWithNoTests": true

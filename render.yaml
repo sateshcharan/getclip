@@ -3,10 +3,13 @@ services:
     name: apps-server
     env: node
     plan: starter
+    region: oregon
     buildCommand: pnpm install && pnpm nx build server
     startCommand: node dist/apps/server/main.js
+    runtime: node
+    branch: main
     envVars:
-      - key: NODE_ENV
-        value: production
       - key: DATABASE_URL
-        sync: false # Add other variables as needed
+        sync: true
+      - key: SUPABASE_URL
+        sync: true
