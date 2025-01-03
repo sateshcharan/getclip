@@ -1,4 +1,4 @@
-name: build-test
+name: build-test-deploy
 
 on:
   push:
@@ -36,11 +36,11 @@ jobs:
       - name: Test the app
         run: pnpm nx test web
 
-      - name: Upload Web Build Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: web-build
-          path: dist/apps/web
+      - name: Install Vercel CLI
+        run: npm install -global vercel
+
+      - name: Deploy to Vercel
+        run: vercel --prod --token ${{ secrets.VERCEL_TOKEN }} --yes
 
   build-test-server:
     runs-on: ubuntu-20.04
@@ -70,27 +70,9 @@ jobs:
       - name: Run server app tests
         run: pnpm nx test server
 
-      - name: Upload Server Build Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: server-build
-          path: dist/apps/server
-
-  deploy-vercel:
-    runs-on: ubuntu-20.04
-    needs: [build-test-web]
-
-    steps:
-      - name: Download Build Artifacts
-        uses: actions/download-artifact@v4
-        with:
-          name: web-build
-
-      - name: Install Vercel CLI
-        run: npm install -global vercel
-
-      - name: Deploy to Vercel
-        run: vercel --prod --token ${{ secrets.VERCEL_TOKEN }} --yes
-
-
+      - name: Deploy to Render
+        run: |
+          curl -fsSL ${{secrets.RENDER_WEBHOOK}}
+        env:
+          RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
 
