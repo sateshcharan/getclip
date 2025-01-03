@@ -6,7 +6,7 @@ export function App() {
   const [message, setMessage] = useState('');
 
   const handleClick = async () => {
-    const response = await fetch('http://localhost:3333/api', {
+    const response = await fetch('https://getclip.onrender.com/api', {
       method: 'GET',
     });
     const data = await response.json();
