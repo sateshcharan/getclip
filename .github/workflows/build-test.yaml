@@ -22,13 +22,13 @@ jobs:
           node-version: 20
 
       - name: Install pnpm
-        run: npm install -g pnpm
+        run: npm install pnpm
 
       - name: Install Dependencies
         run: pnpm install --filter=web
 
       - name: Install NX
-        run: pnpm install -g nx
+        run: pnpm install nx
 
       - name: Build the app
         run: pnpm nx build web
@@ -56,13 +56,13 @@ jobs:
           node-version: 20
 
       - name: Set up PNPM
-        run: npm install -g pnpm
+        run: npm install pnpm
 
       - name: Install dependencies (Server app)
         run: pnpm install --filter=server
 
       - name: Install NX
-        run: pnpm install -g nx  
+        run: pnpm install nx  
 
       - name: Build server app
         run: pnpm nx build server
