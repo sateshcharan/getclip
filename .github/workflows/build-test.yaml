@@ -27,11 +27,14 @@ jobs:
       - name: Install Dependencies
         run: pnpm install --filter=web
 
+      - name: Install NX
+        run: pnpm install -g nx
+
       - name: Build the app
-        run: pnpm build --filter=web
+        run: pnpm nx build web
 
       - name: Test the app
-        run: pnpm test --filter=web
+        run: pnpm nx test web
 
       - name: Upload Web Build Artifact
         uses: actions/upload-artifact@v4
@@ -58,11 +61,14 @@ jobs:
       - name: Install dependencies (Server app)
         run: pnpm install --filter=server
 
+      - name: Install NX
+        run: pnpm install -g nx  
+
       - name: Build server app
-        run: pnpm build --filter=server
+        run: pnpm nx build server
 
       - name: Run server app tests
-        run: pnpm test --filter=server
+        run: pnpm nx test server
 
       - name: Upload Server Build Artifact
         uses: actions/upload-artifact@v4
