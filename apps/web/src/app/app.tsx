@@ -26,9 +26,10 @@ export function App() {
           <Button>Get Data</Button>
         </motion.div>
       )}
-      <h3 className="text-2xl font-semibold">{message.id}</h3>
+      {/* <h3 className="text-2xl font-semibold">{message.id}</h3>
       <h3 className="text-2xl font-semibold">{message.name}</h3>
-      <h3 className="text-2xl font-semibold">{message.email}</h3>
+      <h3 className="text-2xl font-semibold">{message.email}</h3> */}
+      <h3>{message}</h3>
     </motion.div>
   );
 }
