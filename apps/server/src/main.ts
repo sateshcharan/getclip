@@ -7,7 +7,7 @@ import express from 'express';
 import * as path from 'path';
 import cors from 'cors';
 // import prisma from './prisma.service';
-// import { supabase } from './supabase';
+import { supabase } from './supabase';
 
 const app = express();
 app.use(cors());
@@ -20,14 +20,14 @@ app.get('/api', async (req, res) => {
   // res.send({ message: users[0] });
 
   // supabase
-  // const { data, error } = await supabase.from('User').select('*');
-  // if (error) {
-  //   return res.status(400).json({ error: error.message });
-  // }
-  // res.send({ message: data[0] });
+  const { data, error } = await supabase.from('User').select('*');
+  if (error) {
+    return res.status(400).json({ error: error.message });
+  }
+  res.send({ message: data[0] });
 
   //test
-  res.send({ message: 'Hello API' });
+  // res.send({ message: 'Hello API' });
 });
 
 const port = process.env.PORT || 3333;
