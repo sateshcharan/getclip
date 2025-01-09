@@ -2,11 +2,15 @@ import { Button, Input } from '@getclip/lib/ui/index';
 import { useState } from 'react';
 import { motion } from 'motion/react';
 
+import { BACKEND_URL } from '../config';
+
+console.log(BACKEND_URL);
+
 export function App() {
   const [message, setMessage] = useState('');
 
   const handleClick = async () => {
-    const response = await fetch('https://getclip.onrender.com/api', {
+    const response = await fetch(BACKEND_URL ?? '', {
       method: 'GET',
     });
     const data = await response.json();
@@ -29,7 +33,7 @@ export function App() {
       <h3 className="text-2xl font-semibold">{message.id}</h3>
       <h3 className="text-2xl font-semibold">{message.name}</h3>
       <h3 className="text-2xl font-semibold">{message.email}</h3>
-      
+
       {/* <h3>{message}</h3> */}
     </motion.div>
   );

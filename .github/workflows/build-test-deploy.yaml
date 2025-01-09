@@ -24,21 +24,13 @@ jobs:
       - name: Install PNPM
         run: npm install -g pnpm
 
-      - name: Cache PNPM Store
-        uses: actions/cache@v4
-        with:
-          path: ~/.pnpm-store
-          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-
+      - name: Install Dependencies
+        run: pnpm install 
 
   build-test-web:
     needs: common-setup
     runs-on: ubuntu-20.04
     steps:
-      - name: Install Dependencies
-        run: pnpm install --frozen-lockfile --filter=web
-
       - name: Build the app
         run: pnpm nx build web
 
@@ -55,9 +47,6 @@ jobs:
     needs: common-setup
     runs-on: ubuntu-20.04
     steps:
-      - name: Install Dependencies (Server app)
-        run: pnpm install --frozen-lockfile --filter=server
-
       - name: Build server app
         run: pnpm nx build server
 
